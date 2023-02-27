@@ -1,0 +1,62 @@
+name: update requirements
+
+on:
+  workflow_dispatch:
+    inputs:
+      clean:
+        type: boolean
+        required: false
+        description: "Clean unused media"
+        default: true # Set this to false if you want to disable clean unused medias !!!
+      img_dir:
+        type: string
+        required: false
+        description: "Assets directory"
+        default: "assets/img"
+      dry_run:
+        type: boolean
+        required: false
+        description: "Dry run"
+        default: false # Set this to true if you want to test the workflow without commiting the changes !!!
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  update-requirements:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: install pur
+        run: pip install pur
+      - name: Update requirements.txt
+        run: pur -r requirements.txt
+      - name: check python cache
+        id: python_cache
+        uses: actions/cache@v3
+        with:
+          path: venv
+          key: pip-${{ steps.setup_python.outputs.python-version }}-${{ hashFiles('requirements.txt') }}
+      - if: steps.python_cache.outputs.cache-hit != 'true'
+        name: Recreate python cache
+        run: |
+          if [ -d "venv" ]; then rm -rf venv; fi
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+      - if: ${{ github.event.inputs.clean == 'true' }} && ${{ github.event.inputs.dry_run == 'false' }}
+        name: Remove unused media
+        run: python find_unused_media.py "${{ github.event.inputs.img_dir }}"
+      - if: ${{ github.event.inputs.clean == 'true' }} && ${{ github.event.inputs.dry_run == 'true' }}
+        name: Dry run
+        run: python find_unused_media.py "${{ github.event.inputs.img_dir }}" --dry-run
+      - name: commit the new change (if found)
+        continue-on-error: true
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@users.noreply.github.com'
+          git commit -am "Update requirements & remove unused media"
+          git push
