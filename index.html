@@ -1,215 +1,33 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
-  <head>
-      <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FBNHPVTDJS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FBNHPVTDJS');
-</script>
-
- <!-- Google站点验证 -->
-      
-    <meta charset="UTF-8" /> <!-- 设置字符编码为UTF-8 -->
-    <title>秋</title> <!-- 设置网页标题 -->
-    <link rel="icon" href="_media/favicon.ico" /> <!-- 设置网页图标 -->
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> <!-- 设置浏览器兼容性 -->
-    <meta
-      name="keywords"
-      content="doc,docs,documentation,gitbook,creator,generator,github,jekyll,github-pages"
-    /> <!-- 设置网页关键词 -->
-    <meta name="description" content="A magical documentation generator." /> <!-- 设置网页描述 -->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
-    /> <!-- 设置视口，使页面适应不同设备 -->
-    <link
-      rel="stylesheet"
-      href="styles/vue.css"
-      title="vue"
-    /> <!-- 引入Vue主题样式 -->
-    <style>
-      nav.app-nav li ul {
-        min-width: 100px; /* 设置导航栏子菜单最小宽度 */
-      }
-    </style>
-  </head>
-
-  <body>
-    <div id="app">Loading ...</div> <!-- 页面加载时显示的文本 -->
-    <script>
-      // Set html "lang" attribute based on URL 根据URL设置html的"lang"属性
-      var lang = location.hash.match(/#\/(de-de|es|ru-ru|zh-cn)\//);
-
-      if (lang) {
-        document.documentElement.setAttribute('lang', lang[1]);
-      }
-
-      // Docsify configuration Docsify配置
-      window.$docsify = {
-        alias: {
-          '.*?/awesome':
-            'https://raw.githubusercontent.com/docsifyjs/awesome-docsify/master/README.md', /* 设置awesome别名 */
-          '.*?/changelog':
-            'https://raw.githubusercontent.com/docsifyjs/docsify/master/CHANGELOG.md', /* 设置changelog别名 */
-          '/.*/_navbar.md': '/_navbar.md', /* 设置导航栏文件路径 */
-          '/es/(.*)':
-            'https://raw.githubusercontent.com/docsifyjs/docs-es/master/$1', /* 设置西班牙语文档路径 */
-          '/de-de/(.*)':
-            'https://raw.githubusercontent.com/docsifyjs/docs-de/master/$1', /* 设置德语文档路径 */
-          '/ru-ru/(.*)':
-            'https://raw.githubusercontent.com/docsifyjs/docs-ru/master/$1', /* 设置俄语文档路径 */
-          '/zh-cn/(.*)':
-            'https://cdn.jsdelivr.net/gh/docsifyjs/docs-zh@master/$1', /* 设置中文文档路径 */
-        },
-        auto2top: true, /* 自动滚动到顶部 */
-        coverpage: false, /* 不使用封面页 */
-        executeScript: true, /* 允许执行脚本 */
-        loadSidebar: true, /* 加载侧边栏 */
-        loadNavbar: true, /* 加载导航栏 */
-        mergeNavbar: false, /* 合并导航栏 */
-        maxLevel: 4, /* 最大标题级别 */
-        subMaxLevel: 2, /* 子标题最大级别 */
-        ga: 'UA-1061', /* Google Analytics跟踪ID */
-        matomo: {
-          host: '//matomo.thunderwave.de', /* Matomo主机地址 */
-          id: 6, /* Matomo站点ID */
-        },
-        name: '秋', /* 文档名称 */
-        nameLink: {
-          '/es/': '#/es/', /* 西班牙语文档链接 */
-          '/de-de/': '#/de-de/', /* 德语文档链接 */
-          '/ru-ru/': '#/ru-ru/', /* 俄语文档链接 */
-          '/zh-cn/': '#/zh-cn/', /* 中文文档链接 */
-          '/': '#/', /* 默认链接 */
-        },
-        search: {
-          noData: {
-            '/es/': '¡No hay resultados!', /* 西班牙语无结果提示 */
-            '/de-de/': 'Keine Ergebnisse!', /* 德语无结果提示 */
-            '/ru-ru/': 'Никаких результатов!', /* 俄语无结果提示 */
-            '/zh-cn/': '没有结果!', /* 中文无结果提示 */
-            '/': 'No results!', /* 默认无结果提示 */
-          },
-          paths: 'auto', /* 搜索路径自动 */
-          placeholder: {
-            '/es/': 'Buscar', /* 西班牙语搜索框占位符 */
-            '/de-de/': 'Suche', /* 德语搜索框占位符 */
-            '/ru-ru/': 'Поиск', /* 俄语搜索框占位符 */
-            '/zh-cn/': '搜索', /* 中文搜索框占位符 */
-            '/': 'Search', /* 默认搜索框占位符 */
-          },
-          pathNamespaces: ['/es', '/de-de', '/ru-ru', '/zh-cn'], /* 搜索路径命名空间 */
-          // 添加分词工具 添加分词工具
-          tokenize: function (text) {
-            return window.jieba.cut(text);
-          }
-        },
-        vueComponents: {
-          'button-counter': {
-            template:
-              '<button @click="count += 1">You clicked me {{ count }} times</button>', /* 按钮组件模板 */
-            data: function () {
-              return {
-                count: 0, /* 初始点击次数 */
-              };
-            },
-          },
-        },
-        vueGlobalOptions: {
-          data: function () {
-            return {
-              count: 0, /* 初始计数 */
-              message: 'Hello, World!', /* 消息内容 */
-              // Fake API response 模拟API响应
-              images: [
-                { title: 'Image 1', url: 'https://picsum.photos/150?random=1' }, /* 图片1 */
-                { title: 'Image 2', url: 'https://picsum.photos/150?random=2' }, /* 图片2 */
-                { title: 'Image 3', url: 'https://picsum.photos/150?random=3' }, /* 图片3 */
-              ],
-            };
-          },
-          computed: {
-            timeOfDay: function () {
-              const date = new Date(); /* 获取当前日期 */
-              const hours = date.getHours(); /* 获取当前小时 */
-
-              if (hours < 12) {
-                return 'morning'; /* 早上 */
-              } else if (hours < 18) {
-                return 'afternoon'; /* 下午 */
-              } else {
-                return 'evening'; /* 晚上 */
-              }
-            },
-          },
-          methods: {
-            hello: function () {
-              alert(this.message); /* 显示消息 */
-            },
-          },
-        },
-        vueMounts: {
-          '#counter': {
-            data: function () {
-              return {
-                count: 0, /* 初始点击次数 */
-              };
-            },
-          },
-        },
-        plugins: [
-          function (hook, vm) {
-            hook.beforeEach(function (html) {
-              if (/githubusercontent\.com/.test(vm.route.file)) {
-                url = vm.route.file
-                  .replace('raw.githubusercontent.com', 'github.com') /* 替换URL */
-                  .replace(/\/master/, '/blob/master'); /* 替换路径 */
-              } else if (/jsdelivr\.net/.test(vm.route.file)) {
-                url = vm.route.file
-                  .replace('cdn.jsdelivr.net/gh', 'github.com') /* 替换URL */
-                  .replace('@master', '/blob/master'); /* 替换路径 */
-              } else {
-                url =
-                  'https://github.com/docsifyjs/docsify/blob/develop/docs/' +
-                  vm.route.file; /* 设置默认URL */
-              }
-            
-              return (
-                editHtml +
-                html +
-                '\n\n----\n\n' +
-                '<a href="https://docsify.js.org" target="_blank" style="color: inherit; font-weight: normal; text-decoration: none;">Powered by docsify</a>' /* 添加文档由Docsify驱动的链接 */
-              );
-            })
-          },
-        ],
-      };
-    </script>
-    <script src="styles/docsify.min.js"></script> <!-- 引入Docsify核心库 -->
-    <script src="styles/search.min.js"></script> <!-- 引入搜索插件 -->
-    <!-- 引入 jieba 分词工具 引入结巴分词工具 -->
-    <script src="styles/jieba.min.js"></script>
-    <script src="styles/prism-bash.min.js"></script> <!-- 引入Prism.js Bash语法高亮组件 -->
-    <script src="styles/prism-markdown.min.js"></script> <!-- 引入Prism.js Markdown语法高亮组件 -->
-    <script src="styles/prism-nginx.min.js"></script> <!-- 引入Prism.js Nginx语法高亮组件 -->
-    <script src="styles/prism-php.min.js"></script> <!-- 引入Prism.js PHP语法高亮组件 -->
-    <script>
-      // Public site only 仅在公共站点上执行
-      if (/docsify/.test(location.host)) {
-        document.write(
-          '<script src="styles/plugins/ga.min.js"><\/script>' /* 引入Google Analytics插件 */
-        );
-        document.write(
-          '<script src="styles/matomo.min.js"><\/script>' /* 引入Matomo插件 */
-        );
-      }
-    </script>
-    <script src="styles/vue.min.js"></script> <!-- 引入Vue.js 2 -->
-    <!-- <script src="styles/vue.global.prod.js"></script> --> <!-- Vue.js 3引入注释掉 -->
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>知识库</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: '知识库',
+      repo: '',
+      search: 'auto',
+      loadSidebar: true,
+      // 新增折叠配置
+      subMaxLevel: 3,
+      sidebarDisplayLevel: 1,
+      // 修改默认首页
+      homepage: 'zhi-shi-ku.md',
+    }
+  </script>
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <!-- 加载搜索插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+  <!-- 侧边栏插件样式 -->
+<script src="docsify-sidebar-tree.js"></script>
+</body>
 </html>

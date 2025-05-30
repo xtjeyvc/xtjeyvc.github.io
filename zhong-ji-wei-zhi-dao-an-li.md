@@ -1,0 +1,12 @@
+# 中纪委指导案例   
+[1号贺某在新冠肺炎疫情防控工作中搞形式主义官僚主义问题案](files\1hao-he-mou-zai-xin-guan-fei-yan-yi-qing-fang-.md)    
+[2号夏某违规操办其子婚庆事宜案](files\2hao-xia-mou-wei-gui-cao-ban-qi-zi-hun-qing-sh.md)    
+[3号王某组织公款吃喝并违规接受宴请案](files\3hao-wang-mou-zu-zhi-gong-kuan-chi-he-bing-wei.md)    
+[4号张某退休后违规接受宴请案](files\4hao-zhang-mou-tui-xiu-hou-wei-gui-jie-shou-ya.md)    
+[5号某区纪委监委环保问责简单泛化案](files\5hao-mou-qu-ji-wei-jian-wei-huan-bao-wen-ze-ji.md)    
+[6号崔某骗领财政惠民惠农补贴资金案](files\6hao-cui-mou-pian-ling-cai-zheng-hui-min-hui-n.md)    
+[7号沈某公车私用私车公养案](files\7hao-chen-mou-gong-che-si-yong-si-che-gong-yan.md)    
+[8号姚某使用空白公函报销案](files\8hao-yao-mou-shi-yong-kong-bai-gong-han-bao-xi.md)    
+[9号吴某违规摊派案](files\9hao-wu-mou-wei-gui-tan-pai-an.md)    
+[10号徐某对抗组织审查案](files\10hao-xu-mou-dui-kang-zu-zhi-shen-cha-an.md)    
+[11号对林某予以容错免责案](files\11hao-dui-lin-mou-yu-yi-rong-cuo-mian-ze-an.md)    
